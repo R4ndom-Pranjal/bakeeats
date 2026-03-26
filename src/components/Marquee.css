@@ -1,0 +1,31 @@
+.marquee-container {
+  background-color: var(--green);
+  color: var(--yellow);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  border-top: 4px solid var(--green);
+  border-bottom: 4px solid var(--green);
+  position: relative;
+  z-index: 20;
+}
+
+.marquee-content {
+  display: flex;
+  width: fit-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-item {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

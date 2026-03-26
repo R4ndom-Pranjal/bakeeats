@@ -1,0 +1,19 @@
+.dark-mode-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: none;
+  border: 2px solid var(--green);
+  color: var(--green);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  padding: 0;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--yellow);
+  transform: scale(1.1);
+}

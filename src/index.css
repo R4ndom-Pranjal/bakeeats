@@ -1,0 +1,96 @@
+:root {
+  --cream: #F4F1E1;
+  --yellow: #FCA311;
+  --green: #113516;
+  --green-light: #2A5D32;
+  --red: #E63946;
+
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+
+  --shadow-hard: 6px 6px 0px var(--green);
+  --shadow-badge: 4px 4px 10px rgba(17, 53, 22, 0.3);
+
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--green);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, .display-text {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.text-yellow { color: var(--yellow); }
+.text-red { color: var(--red); }
+.text-cream { color: var(--cream); }
+
+/* --- Animation keyframes --- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Dark Mode --- */
+body.dark {
+  --cream: #1a1a2e;
+  --yellow: #FCA311;
+  --green: #e8e8e8;
+  --green-light: #333355;
+  --red: #E63946;
+}
+
+body.dark .product-card,
+body.dark .bundle-card,
+body.dark .testimonial-card,
+body.dark .faq-item {
+  background: #222244;
+}
+
+body.dark .cart-drawer {
+  background: #1a1a2e;
+}
+
+body.dark nav.scrolled {
+  background: rgba(26, 26, 46, 0.9);
+}

@@ -1,0 +1,36 @@
+.video-section {
+  background: var(--cream);
+  padding: 6rem 4rem;
+}
+
+.video-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-container iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 20px;
+  border: 4px solid var(--green);
+  box-shadow: 12px 12px 0px var(--green);
+}
+
+.video-caption {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--green);
+  opacity: 0.65;
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+  .video-section {
+    padding: 4rem 2rem;
+  }
+}
