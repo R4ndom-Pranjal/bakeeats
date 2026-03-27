@@ -17,36 +17,51 @@ const products = [
 
 const TOTAL = products.length
 
+function getVisibleItems(current) {
+  const items = []
+  for (let offset = -2; offset <= 2; offset++) {
+    const idx = ((current + offset) % TOTAL + TOTAL) % TOTAL
+    items.push({ product: products[idx], offset })
+  }
+  return items
+}
+
 export default function Hero() {
   const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState(0)
   const timerRef = useRef(null)
   const touchStartX = useRef(0)
 
-  const goTo = useCallback((idx) => {
+  const goTo = useCallback((idx, dir) => {
+    setDirection(dir)
     setCurrent(((idx % TOTAL) + TOTAL) % TOTAL)
   }, [])
 
-  const next = useCallback(() => goTo(current + 1), [current, goTo])
-  const prev = useCallback(() => goTo(current - 1), [current, goTo])
+  const handleNext = useCallback(() => {
+    goTo(current + 1, 1)
+    resetTimer()
+  }, [current, goTo])
 
-  // Auto-rotate
+  const handlePrev = useCallback(() => {
+    goTo(current - 1, -1)
+    resetTimer()
+  }, [current, goTo])
+
+  const resetTimer = useCallback(() => {
+    clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
+      setDirection(1)
+      setCurrent((c) => (c + 1) % TOTAL)
+    }, 3000)
+  }, [])
+
   useEffect(() => {
     timerRef.current = setInterval(() => {
+      setDirection(1)
       setCurrent((c) => (c + 1) % TOTAL)
     }, 3000)
     return () => clearInterval(timerRef.current)
   }, [])
-
-  // Reset timer on manual navigation
-  const resetTimer = useCallback(() => {
-    clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
-      setCurrent((c) => (c + 1) % TOTAL)
-    }, 3000)
-  }, [])
-
-  const handlePrev = () => { prev(); resetTimer() }
-  const handleNext = () => { next(); resetTimer() }
 
   const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX }
   const handleTouchEnd = (e) => {
@@ -57,10 +72,22 @@ export default function Hero() {
     }
   }
 
-  const angleStep = 360 / TOTAL
+  const visibleItems = getVisibleItems(current)
 
   return (
     <section className="hero">
+      {/* Floating bakery icons */}
+      <span className="hero-deco">🍪</span>
+      <span className="hero-deco">🧈</span>
+      <span className="hero-deco">☕</span>
+      <span className="hero-deco">🌾</span>
+      <span className="hero-deco">🥜</span>
+      <span className="hero-deco">🍯</span>
+
+      {/* Spinning dashed rings */}
+      <div className="hero-ring" />
+      <div className="hero-ring-2" />
+
       <svg className="hero-blob" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
         <path fill="var(--yellow)" d="M485.5,302.5Q376,105,202,238.5Q28,372,139.5,502Q251,632,393.5,618.5Q536,605,565.5,452.5Q595,300,485.5,302.5Z" />
         <path fill="var(--yellow)" d="M720,150 Q780,250 680,320 Q580,390 600,250 Q620,110 720,150 Z" />
@@ -76,37 +103,24 @@ export default function Hero() {
 
       <div className="hero-visual anim-fadeScale" style={{ animationDelay: '0.4s' }}>
         <div
-          className="carousel-scene"
+          className="carousel-track"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div
-            className="carousel-ring"
-            style={{ transform: `rotateY(${-current * angleStep}deg)` }}
-          >
-            {products.map((p, i) => {
-              const angle = i * angleStep
-              // Distance from active item (circular)
-              let dist = Math.abs(i - current)
-              if (dist > TOTAL / 2) dist = TOTAL - dist
-
-              return (
-                <div
-                  key={p.title}
-                  className={`carousel-item ${i === current ? 'active' : ''}`}
-                  style={{
-                    transform: `rotateY(${angle}deg) translateZ(380px)`,
-                    opacity: dist === 0 ? 1 : Math.max(0.25, 1 - dist * 0.2),
-                    filter: dist === 0 ? 'none' : `blur(${Math.min(dist * 1.5, 4)}px)`,
-                  }}
-                >
-                  <img src={p.image} alt={p.title} />
-                  <div className="carousel-label">{p.title}</div>
-                  <div className="carousel-type">{p.type}</div>
-                </div>
-              )
-            })}
-          </div>
+          {visibleItems.map(({ product: p, offset }) => (
+            <div
+              key={p.title}
+              className={`carousel-item ${offset === 0 ? 'active' : ''}`}
+              style={{
+                '--offset': offset,
+                '--abs-offset': Math.abs(offset),
+              }}
+            >
+              <img src={p.image} alt={p.title} />
+              <div className="carousel-label">{p.title}</div>
+              <div className="carousel-type">{p.type}</div>
+            </div>
+          ))}
         </div>
 
         <div className="carousel-controls">

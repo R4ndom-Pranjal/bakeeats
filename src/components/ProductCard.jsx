@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useCart } from '../context/CartContext'
 import './ProductCard.css'
 
 export default function ProductCard({ product }) {
+  const { addItem } = useCart()
   const [hovered, setHovered] = useState(false)
 
   const imageSrc = product.gifImage && hovered ? product.gifImage : product.image
@@ -26,6 +28,12 @@ export default function ProductCard({ product }) {
       <div className="product-type">{product.type}</div>
       <h3 className="product-title">{product.title}</h3>
       <p className="product-desc">{product.description}</p>
+      <div className="product-meta">
+        <button className="btn-order" onClick={() => addItem(product)}>
+          Add to Cart
+        </button>
+        <button className="btn-add" onClick={() => addItem(product)}>+</button>
+      </div>
     </div>
   )
 }
