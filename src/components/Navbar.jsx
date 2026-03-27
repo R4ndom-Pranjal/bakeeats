@@ -32,7 +32,6 @@ export default function Navbar() {
           />
         </a>
         <div className="nav-links">
-          <a href="#products">Shop The Range</a>
           <a href="#products">Our Babies</a>
           <a href="#story">Kahani</a>
           <a href="https://blinkit.com/prn/x/prid/735252" target="_blank" rel="noreferrer">Blinkit</a>
@@ -67,7 +66,6 @@ export default function Navbar() {
 
       <div className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-content">
-          <a href="#products" onClick={closeMenu}>Shop The Range</a>
           <a href="#products" onClick={closeMenu}>Our Babies</a>
           <a href="#story" onClick={closeMenu}>Kahani</a>
           <a href="https://blinkit.com/prn/x/prid/735252" target="_blank" rel="noreferrer" onClick={closeMenu}>Blinkit</a>

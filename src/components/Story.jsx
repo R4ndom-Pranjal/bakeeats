@@ -39,8 +39,8 @@ export default function Story() {
       <div className="story-content">
         <h2>THE BAKEATS KAHANI</h2>
         <p>It started in Noida with a simple realization by our founder, Pankaj Mishra: everyday Indians deserve premium bakery quality without the premium price tag.</p>
-        <p>We saw plain packaging hiding average ingredients. So we flipped it. At Bakeats, our ingredients are literally <em>hugging the product</em>. You see what you eat. We use real butter, real jeera, real nariyal, and pack it with a whole lot of Made-in-India attitude.</p>
-        <p>From our ovens to your chai cup, we guarantee one thing:</p>
+        <p>We saw plain packaging hiding average ingredients. So we flipped it. At Bakeats, our ingredients are literally <em>hugging the product</em>. You see what you eat. We use premium butter, real jeera, finest coconut, and pack it with a whole lot of Made-in-India attitude.</p>
+        <p>From our ovens to your chai cup, we promise just one thing:</p>
         <span className="story-signature">Taste Mein A++</span>
       </div>
     </section>

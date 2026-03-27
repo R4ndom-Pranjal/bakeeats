@@ -2,7 +2,7 @@ import './ExportBanner.css'
 
 export default function ExportBanner() {
   return (
-    <section className="export-banner">
+    <section className="export-banner" id="export">
       <div className="export-grid">
         <div className="export-text">
           <span className="export-tag">GLOBAL REACH</span>
@@ -21,7 +21,7 @@ export default function ExportBanner() {
               Become a Distributor
             </a>
             <a
-              href="https://bakeats-blond.vercel.app/export"
+              href="https://wa.me/919266565336?text=Hi!%20I'd%20like%20to%20know%20more%20about%20Bakeats%20export%20opportunities."
               className="btn export-btn-outline"
               target="_blank"
               rel="noreferrer"

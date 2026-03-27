@@ -5,7 +5,7 @@ const statsData = [
   { number: 10000, suffix: '+', label: 'Happy Customers', prefix: '' },
   { number: 100, suffix: '%', label: 'Vegetarian', prefix: '' },
   { number: 11, suffix: '+', label: 'Flavors', prefix: '' },
-  { number: null, display: 'Made in', label: 'Noida, India \u{1F1EE}\u{1F1F3}', prefix: '' },
+  { number: null, display: 'Made in', label: 'India', prefix: '' },
 ]
 
 function useCountUp(target, isVisible, duration = 1500) {

@@ -11,8 +11,8 @@ export default function Footer() {
       <div className="footer-links">
         <a href="#products">Products</a>
         <a href="#story">About</a>
-        <a href="https://bakeats-blond.vercel.app/media" target="_blank" rel="noreferrer">Media</a>
-        <a href="https://bakeats-blond.vercel.app/export" target="_blank" rel="noreferrer">Export</a>
+        <a href="#as-seen-on">Media</a>
+        <a href="#export">Export</a>
       </div>
       <div className="footer-text">Proudly Made in Noida, India</div>
       <a href="https://wa.me/919266565336" className="btn btn-footer" target="_blank" rel="noreferrer">Find a Distributor</a>

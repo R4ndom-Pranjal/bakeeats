@@ -7,9 +7,10 @@
 }
 
 .ingredients-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem 3rem;
   max-width: 900px;
   margin: 0 auto;
 }

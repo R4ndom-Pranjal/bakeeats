@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'What makes Bakeats different?',
-    a: 'We use premium, real ingredients — no shortcuts. Real butter, real nuts, real spices. Plus our quirky Indian flavors you won\'t find anywhere else.',
+    a: 'We use premium ingredients — no shortcuts. Premium butter, premium nuts, premium spices. Plus our quirky Indian flavors you won\'t find anywhere else.',
   },
 ]
 

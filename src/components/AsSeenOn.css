@@ -1,17 +1,18 @@
 .as-seen-on {
-  padding: 6rem 2rem;
+  padding: 8rem 2rem;
+  background: var(--cream);
 }
 
 .as-seen-on .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .press-scroll {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 1rem 1rem 2rem;
+  padding: 1rem 2rem 2rem;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

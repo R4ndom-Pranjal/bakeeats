@@ -2,20 +2,12 @@ import './Ingredients.css'
 
 const ingredients = [
   {
-    name: 'Pure Butter',
+    name: 'Premium Butter',
     img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770739279/stock-photo-butter-curls-Photoroom_klkwdt.png',
-  },
-  {
-    name: 'Whole Wheat',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770722962/ripe-wheat-15736603-Photoroom_upfwqg.png',
   },
   {
     name: 'Premium Almonds',
     img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770737939/organic-almond-nut-isolated-white-background_299651-2983-Photoroom_pll7hs.png',
-  },
-  {
-    name: 'Fresh Coconut',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770718735/shutterstock_424228717-1-Photoroom_ajbayl.png',
   },
   {
     name: 'Rich Chocolate',
@@ -25,13 +17,17 @@ const ingredients = [
     name: 'Aromatic Cumin',
     img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770716655/zeera-img2-Photoroom_empg35.png',
   },
+  {
+    name: 'Authentic Elaichi',
+    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770813844/elachi.e857599bde6db2425f0d-Photoroom_h8jfn6.png',
+  },
 ]
 
 export default function Ingredients() {
   return (
     <section className="ingredients">
       <div className="section-header">
-        <h2>REAL INGREDIENTS, REAL TASTE</h2>
+        <h2>FINEST INGREDIENTS, A++ TASTE</h2>
       </div>
 
       <div className="ingredients-grid">

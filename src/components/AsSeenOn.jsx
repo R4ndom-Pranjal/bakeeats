@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from 'react'
 import './AsSeenOn.css'
 
 const pressItems = [
@@ -28,15 +29,53 @@ const pressItems = [
 ]
 
 export default function AsSeenOn() {
+  const scrollRef = useRef(null)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    let raf
+    const speed = 0.8
+
+    function step() {
+      if (!paused) {
+        container.scrollLeft += speed
+        if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+          container.scrollLeft = 0
+        }
+      }
+      raf = requestAnimationFrame(step)
+    }
+
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [paused])
+
   return (
-    <section className="as-seen-on">
+    <section className="as-seen-on" id="as-seen-on">
       <div className="section-header">
         <h2>AS SEEN ON</h2>
       </div>
 
-      <div className="press-scroll">
+      <div
+        className="press-scroll"
+        ref={scrollRef}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
         {pressItems.map((item) => (
           <div className="press-card" key={item.name}>
+            <div className="press-img-wrap">
+              <img src={item.img} alt={item.name} loading="lazy" />
+            </div>
+            <span className="press-name">{item.name}</span>
+          </div>
+        ))}
+        {/* Duplicate for seamless loop */}
+        {pressItems.map((item) => (
+          <div className="press-card" key={item.name + '-dup'}>
             <div className="press-img-wrap">
               <img src={item.img} alt={item.name} loading="lazy" />
             </div>

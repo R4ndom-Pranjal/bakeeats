@@ -17,6 +17,10 @@
 
 .loader-logo {
   width: 180px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 1.2rem;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
   animation: pulse-scale 1.2s ease-in-out infinite;
 }
 
