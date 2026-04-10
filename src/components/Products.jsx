@@ -37,10 +37,10 @@ const cookieBundles = [
     weight: '270 g each',
     price: 429,
     images: [
-      'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304489/baadam_jd8ykx.png',
-      'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304489/baadam_jd8ykx.png',
-      'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304489/baadam_jd8ykx.png',
-      'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304489/baadam_jd8ykx.png',
+      '/dryfruit/almond.png',
+      '/dryfruit/cashew.png',
+      '/dryfruit/mix.png',
+      '/dryfruit/honey-almond.png',
     ],
     accent: 'var(--green)',
     type: 'Cookie Bundle',
@@ -126,6 +126,34 @@ const cookies = [
     image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304421/ajwain_xfcbnq.png',
     ingredients: ['🌿', '✨'],
   },
+  {
+    type: 'Dry Fruit Cookies',
+    title: 'ALMOND',
+    description: 'Premium almond cookies loaded with roasted almonds for a rich, nutty crunch.',
+    image: '/dryfruit/almond.png',
+    ingredients: ['🥜', '✨'],
+  },
+  {
+    type: 'Dry Fruit Cookies',
+    title: 'CASHEW',
+    description: 'Buttery cashew cookies packed with creamy cashew goodness in every bite.',
+    image: '/dryfruit/cashew.png',
+    ingredients: ['🥜', '🧈'],
+  },
+  {
+    type: 'Dry Fruit Cookies',
+    title: 'MIX DRY FRUIT',
+    description: 'Wholesome mix of almonds, cashews and raisins baked into a crunchy delight.',
+    image: '/dryfruit/mix.png',
+    ingredients: ['🥜', '🍇'],
+  },
+  {
+    type: 'Dry Fruit Cookies',
+    title: 'HONEY ALMOND',
+    description: 'Honey-kissed almond cookies with a natural sweetness and satisfying crunch.',
+    image: '/dryfruit/honey-almond.png',
+    ingredients: ['🍯', '🥜'],
+  },
 ]
 
 const rusks = [
@@ -200,7 +228,7 @@ export default function Products() {
         ))}
       </div>
 
-      <h3 className="product-section-title" style={{ marginTop: '5rem' }}>RUSKS</h3>
+      <h3 className="product-section-title" style={{ marginTop: '5rem' }}>RUSK BUNDLE</h3>
       <div className="bundle-grid">
         <BundleCard bundle={ruskBundle} />
       </div>
@@ -219,14 +247,14 @@ export default function Products() {
         </div>
       </div>
 
-      <h3 className="product-section-title" style={{ marginTop: '5rem' }}>INDIVIDUAL COOKIES</h3>
+      <h3 className="product-section-title" style={{ marginTop: '5rem' }}>COOKIES</h3>
       <div className="product-grid">
         {cookies.map((product) => (
           <ProductCard key={product.title} product={product} />
         ))}
       </div>
 
-      <h3 className="product-section-title" style={{ marginTop: '5rem' }}>INDIVIDUAL RUSKS</h3>
+      <h3 className="product-section-title" style={{ marginTop: '5rem' }}>RUSKS</h3>
       <div className="product-grid">
         {rusks.map((product) => (
           <ProductCard key={product.title} product={product} />
