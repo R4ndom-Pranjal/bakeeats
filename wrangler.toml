@@ -1,0 +1,14 @@
+name = "bakeats"
+compatibility_date = "2026-06-11"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bakeats-orders"
+database_id = "REPLACE_WITH_DATABASE_ID_FROM_WRANGLER_D1_CREATE"
+
+[vars]
+RAZORPAY_KEY_ID = "REPLACE_WITH_RAZORPAY_KEY_ID"
+FROM_EMAIL = "orders@bakeats.in"
+MERCHANT_EMAIL = "info@pndeximindia.com"
+SITE_URL = "https://bakeats.in"

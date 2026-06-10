@@ -2,9 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { useCart } from '../context/CartContext'
 import './Checkout.css'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID
-
 function loadRazorpayScript() {
   return new Promise((resolve) => {
     if (document.getElementById('razorpay-script')) {
@@ -66,7 +63,7 @@ export default function Checkout() {
 
     let orderData
     try {
-      const res = await fetch(`${API_URL}/api/create-order`, {
+      const res = await fetch('/api/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalAmount * 100, currency: 'INR', receipt: `receipt_${Date.now()}` }),
@@ -79,7 +76,7 @@ export default function Checkout() {
     }
 
     const options = {
-      key: RAZORPAY_KEY_ID,
+      key: orderData.keyId,
       amount: orderData.amount,
       currency: orderData.currency,
       name: 'Bakeats',
@@ -91,7 +88,7 @@ export default function Checkout() {
       modal: { ondismiss: () => setStep('form') },
       handler: async (response) => {
         try {
-          const verifyRes = await fetch(`${API_URL}/api/verify-payment`, {
+          const verifyRes = await fetch('/api/verify-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -109,9 +106,11 @@ export default function Checkout() {
           const data = await verifyRes.json()
           if (data.success) {
             setConfirmedOrder({
+              orderId: data.orderId,
               paymentId: data.paymentId,
               name: form.name,
               email: form.email,
+              phone: form.phone,
               address: form.address,
               items: [...items],
               totalAmount,
@@ -159,6 +158,16 @@ export default function Checkout() {
                 <h3>Thank you, {confirmedOrder.name}!</h3>
                 <p>Your baked goodies are being packed fresh. A confirmation has been sent to <strong>{confirmedOrder.email}</strong>.</p>
               </div>
+            </div>
+
+            <div className="co-order-id-card">
+              <div>
+                <span className="co-order-id-label">YOUR ORDER ID</span>
+                <span className="co-order-id-value">{confirmedOrder.orderId}</span>
+              </div>
+              <a href="#track" className="co-track-link" onClick={() => setCheckoutOpen(false)}>
+                Track Order →
+              </a>
             </div>
 
             <div className="co-success-grid">

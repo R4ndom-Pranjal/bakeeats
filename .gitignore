@@ -14,9 +14,11 @@ dist-ssr
 .env
 .env.*
 !.env.example
-server/.env
-server/.env.*
-!server/.env.example
+legacy-server/.env
+legacy-server/.env.*
+!legacy-server/.env.example
+.wrangler/
+.dev.vars
 
 # Editor directories and files
 .vscode/*
