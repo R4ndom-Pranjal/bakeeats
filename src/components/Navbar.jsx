@@ -36,6 +36,7 @@ export default function Navbar() {
           <a href="#story">Kahani</a>
           <a href="https://blinkit.com/prn/x/prid/735252" target="_blank" rel="noreferrer">Blinkit</a>
           <a href="#footer">Find Us</a>
+          <a href="#track">Track Order</a>
         </div>
         <div className="nav-right">
           <DarkModeToggle />
@@ -70,6 +71,7 @@ export default function Navbar() {
           <a href="#story" onClick={closeMenu}>Kahani</a>
           <a href="https://blinkit.com/prn/x/prid/735252" target="_blank" rel="noreferrer" onClick={closeMenu}>Blinkit</a>
           <a href="#footer" onClick={closeMenu}>Find Us</a>
+          <a href="#track" onClick={closeMenu}>Track Order</a>
           <button className="cart-btn mobile-cart-btn" onClick={() => { setCartOpen(true); closeMenu() }} aria-label="Open cart">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
