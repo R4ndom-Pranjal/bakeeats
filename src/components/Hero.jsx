@@ -2,17 +2,17 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import './Hero.css'
 
 const products = [
-  { title: 'MASKAAA', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304510/maska_ht9ri9.png' },
-  { title: 'NAAARIYAL', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304473/nariyal_m4bdko.png' },
-  { title: 'CHOCO CHASKAAA', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770817215/chocolate_ahb4q3.png' },
-  { title: 'JEERAAA', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304407/jeera_uimjxy.png' },
-  { title: 'BAAADAM', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304489/baadam_jd8ykx.png' },
-  { title: 'AAATTA', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304441/atta_nto4fr.png' },
-  { title: 'AAAJWAIN', type: 'Cookie', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770304421/ajwain_xfcbnq.png' },
-  { title: 'SUJI RUSK', type: 'Rusk', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770813837/Suji_rusk.f592fca2c815d8295049-Photoroom_bsoe0c.png' },
-  { title: 'MILK RUSK', type: 'Rusk', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770813840/Milk_rusk.55cd87e135e384e6656f-Photoroom_zha2la.png' },
-  { title: 'GUD RUSK', type: 'Rusk', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770813841/gud_rusk.900f91b44fdd4e91af8f-Photoroom_kzr7u1.png' },
-  { title: 'ELAICHI RUSK', type: 'Rusk', image: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770813844/elachi.e857599bde6db2425f0d-Photoroom_h8jfn6.png' },
+  { title: 'MASKAAA', type: 'Cookie', image: '/products/cookies/maska.png' },
+  { title: 'NAAARIYAL', type: 'Cookie', image: '/products/cookies/nariyal.png' },
+  { title: 'CHOCO CHASKAAA', type: 'Cookie', image: '/products/cookies/choco.png' },
+  { title: 'JEERAAA', type: 'Cookie', image: '/products/cookies/jeera.png' },
+  { title: 'BAAADAM', type: 'Cookie', image: '/products/cookies/baadam.png' },
+  { title: 'AAATTA', type: 'Cookie', image: '/products/cookies/atta.png' },
+  { title: 'AAAJWAIN', type: 'Cookie', image: '/products/cookies/ajwain.png' },
+  { title: 'SUJI RUSK', type: 'Rusk', image: '/products/rusks/suji.png' },
+  { title: 'MILK RUSK', type: 'Rusk', image: '/products/rusks/milk.png' },
+  { title: 'GUD RUSK', type: 'Rusk', image: '/products/rusks/gud.png' },
+  { title: 'ELAICHI RUSK', type: 'Rusk', image: '/products/rusks/elaichi.png' },
 ]
 
 const TOTAL = products.length

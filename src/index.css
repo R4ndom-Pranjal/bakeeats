@@ -33,6 +33,10 @@ img {
   display: block;
 }
 
+img[src$="/products/cookies/ajwain.png"] {
+  transform: scale(0.9);
+}
+
 h1, h2, h3, .display-text {
   font-family: var(--font-display);
   text-transform: uppercase;

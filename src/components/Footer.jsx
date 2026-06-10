@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer>
       <img
-        src="https://res.cloudinary.com/ddtifclgr/image/upload/v1770035808/logo.5586e616d663e63711b3-Photoroom_ksprww.png"
+        src="/logo.png"
         alt="Bakeats"
         className="footer-logo-img"
       />
