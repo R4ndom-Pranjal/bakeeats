@@ -17,6 +17,7 @@ import Footer from './components/Footer'
 import WhatsAppFab from './components/WhatsAppFab'
 import BackToTop from './components/BackToTop'
 import CartDrawer from './components/CartDrawer'
+import Checkout from './components/Checkout'
 import PageLoader from './components/PageLoader'
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
       <WhatsAppFab />
       <BackToTop />
       <CartDrawer />
+      <Checkout />
       <PageLoader />
     </CartProvider>
   )

@@ -5,6 +5,7 @@ const CartContext = createContext()
 export function CartProvider({ children }) {
   const [items, setItems] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
+  const [checkoutOpen, setCheckoutOpen] = useState(false)
 
   const addItem = useCallback((product) => {
     setItems((prev) => {
@@ -35,10 +36,11 @@ export function CartProvider({ children }) {
   const clearCart = useCallback(() => setItems([]), [])
 
   const totalItems = items.reduce((sum, i) => sum + i.qty, 0)
+  const totalAmount = items.reduce((sum, i) => sum + (i.price || 0) * i.qty, 0)
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, updateQty, clearCart, totalItems, cartOpen, setCartOpen }}
+      value={{ items, addItem, removeItem, updateQty, clearCart, totalItems, totalAmount, cartOpen, setCartOpen, checkoutOpen, setCheckoutOpen }}
     >
       {children}
     </CartContext.Provider>

@@ -2,10 +2,13 @@ import { useCart } from '../context/CartContext'
 import './CartDrawer.css'
 
 export default function CartDrawer() {
-  const { items, updateQty, removeItem, clearCart, totalItems, cartOpen, setCartOpen } = useCart()
+  const { items, updateQty, removeItem, clearCart, totalItems, totalAmount, cartOpen, setCartOpen, setCheckoutOpen } = useCart()
 
   const whatsappOrder = () => {
-    const lines = items.map((i) => `${i.qty}x ${i.title}`)
+    const lines = items.map((i) => {
+      const head = `${i.qty}x ${i.title}`
+      return i.description ? `${head}\n   (${i.description})` : head
+    })
     const msg = encodeURIComponent(
       `Hi! I'd like to order from Bakeats:\n\n${lines.join('\n')}\n\nPlease confirm availability. Thank you!`
     )
@@ -40,6 +43,9 @@ export default function CartDrawer() {
                   <div className="cart-item-info">
                     <h4>{item.title}</h4>
                     <span className="cart-item-type">{item.type}</span>
+                    {item.description && (
+                      <span className="cart-item-desc">{item.description}</span>
+                    )}
                   </div>
                   <div className="cart-item-qty">
                     <button onClick={() => updateQty(item.title, item.qty - 1)}>-</button>
@@ -57,12 +63,25 @@ export default function CartDrawer() {
 
             <div className="cart-footer">
               <div className="cart-total">
-                <span>Total Items</span>
-                <span className="cart-total-num">{totalItems}</span>
+                <span>Total</span>
+                <span className="cart-total-num">
+                  {totalAmount > 0 ? `₹${totalAmount}` : `${totalItems} items`}
+                </span>
               </div>
+              {totalAmount > 0 && (
+                <button
+                  className="btn cart-checkout-btn"
+                  onClick={() => { setCartOpen(false); setCheckoutOpen(true) }}
+                >
+                  Proceed to Checkout
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+              )}
               <button className="btn cart-order-btn" onClick={whatsappOrder}>
-                Order on WhatsApp ({totalItems} items)
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                Order on WhatsApp
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
