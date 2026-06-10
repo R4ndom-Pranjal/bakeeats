@@ -34,6 +34,10 @@
   transition: transform 0.3s ease;
 }
 
+.product-img-wrapper--rusk img {
+  width: 110%;
+}
+
 .product-card:hover .product-img-wrapper img {
   transform: scale(1.1) rotate(5deg);
 }

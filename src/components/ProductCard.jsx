@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="product-img-wrapper"
+        className={`product-img-wrapper${product.type?.includes('Rusk') ? ' product-img-wrapper--rusk' : ''}`}
         style={product.bgColor ? { backgroundColor: product.bgColor } : undefined}
       >
         <span className="ingredient-hug ing-1">{product.ingredients[0]}</span>
