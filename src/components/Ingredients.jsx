@@ -3,23 +3,25 @@ import './Ingredients.css'
 const ingredients = [
   {
     name: 'Premium Butter',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770739279/stock-photo-butter-curls-Photoroom_klkwdt.png',
+    img: '/ingredients/butter.png',
   },
   {
     name: 'Premium Almonds',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770737939/organic-almond-nut-isolated-white-background_299651-2983-Photoroom_pll7hs.png',
+    img: '/ingredients/almond.png',
+    position: '50% 62%',
   },
   {
     name: 'Rich Chocolate',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770817558/milk-chocolate-bar-isolated-on-white-background-dessert-free-photo-Photoroom_xnavwt.png',
+    img: '/ingredients/chocolate.png',
   },
   {
     name: 'Aromatic Cumin',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770716655/zeera-img2-Photoroom_empg35.png',
+    img: '/ingredients/cumin.png',
+    position: '50% 65%',
   },
   {
     name: 'Authentic Elaichi',
-    img: 'https://res.cloudinary.com/ddtifclgr/image/upload/v1770813844/elachi.e857599bde6db2425f0d-Photoroom_h8jfn6.png',
+    img: '/ingredients/elaichi.png',
   },
 ]
 
@@ -34,7 +36,12 @@ export default function Ingredients() {
         {ingredients.map((item) => (
           <div className="ingredient-card" key={item.name}>
             <div className="ingredient-circle">
-              <img src={item.img} alt={item.name} loading="lazy" />
+              <img
+                src={item.img}
+                alt={item.name}
+                loading="lazy"
+                style={item.position ? { objectPosition: item.position } : undefined}
+              />
             </div>
             <span className="ingredient-name">{item.name}</span>
           </div>

@@ -8,33 +8,55 @@
 }
 
 .press-scroll {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 1rem 2rem 2rem;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow: hidden;
+  padding: 1rem 0 2rem;
 }
 
-.press-scroll::-webkit-scrollbar {
-  display: none;
+.press-track {
+  display: flex;
+  width: max-content;
+  animation: press-marquee 35s linear infinite;
+}
+
+.press-scroll:hover .press-track {
+  animation-play-state: paused;
+}
+
+@keyframes press-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-4 * (320px + 2rem))); }
 }
 
 .press-card {
   flex: 0 0 320px;
+  margin-right: 2rem;
   background: #fff;
   border: 3px solid var(--green);
   border-radius: 12px;
   overflow: hidden;
-  scroll-snap-align: start;
   transition: var(--transition);
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .press-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hard);
+}
+
+.press-card--nolink {
+  cursor: default;
+}
+
+.press-card--nolink:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.press-card--nolink:hover .press-img-wrap img {
+  transform: none;
 }
 
 .press-img-wrap {

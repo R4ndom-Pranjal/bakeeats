@@ -30,7 +30,7 @@ export default function Story() {
 
       <div className="story-img-wrap">
         <img
-          src="https://res.cloudinary.com/ddtifclgr/image/upload/v1772051872/125A3288_yq7gfo.jpg"
+          src="/story/founder.jpg"
           alt="Pankaj Mishra - Founder of Bakeats"
           className="story-img"
         />
