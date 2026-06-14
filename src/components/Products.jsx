@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import BundleCard from './BundleCard'
 import ProductCard from './ProductCard'
 import CustomComboPicker from './CustomComboPicker'
+import { useCart } from '../context/CartContext'
 import './Products.css'
 
 const cookieBundles = [
@@ -66,7 +67,7 @@ const ruskBundle = {
   name: 'Classic Rusks',
   items: ['Elaichi', 'Suji', 'Milk', 'Gud'],
   weight: '300 g each',
-  price: null,
+  price: 335,
   images: [
     '/products/rusks/elaichi.png',
     '/products/rusks/suji.png',
@@ -195,6 +196,10 @@ const rusks = [
 export default function Products() {
   const sectionRef = useRef(null)
   const [comboOpen, setComboOpen] = useState(false)
+  const { items: cartItems } = useCart()
+  const comboCount = cartItems
+    .filter((i) => i.title.startsWith('CUSTOM COMBO'))
+    .reduce((sum, i) => sum + i.qty, 0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -208,10 +213,14 @@ export default function Products() {
       { threshold: 0.08 }
     )
 
-    const cards = sectionRef.current?.querySelectorAll('.bundle-card, .product-card')
-    cards?.forEach((card, i) => {
-      card.style.transitionDelay = `${i * 0.07}s`
-      observer.observe(card)
+    // Reset stagger per grid so later grids don't accumulate huge delays
+    const grids = sectionRef.current?.querySelectorAll('.bundle-grid, .product-grid')
+    grids?.forEach((grid) => {
+      const cards = grid.querySelectorAll('.bundle-card, .product-card')
+      cards.forEach((card, i) => {
+        card.style.transitionDelay = `${(i % 4) * 0.05}s`
+        observer.observe(card)
+      })
     })
 
     return () => observer.disconnect()
@@ -239,9 +248,10 @@ export default function Products() {
         <div className="customize-card">
           <span className="customize-icon">🍪</span>
           <h3>CUSTOMIZE YOUR COMBO</h3>
-          <p>Want a custom mix? Pick your own flavors and we'll pack it fresh for you.</p>
+          <p>Pick any 4 flavors — cookies, rusks, mix &amp; match. ₹469 per combo.</p>
           <button className="btn" onClick={() => setComboOpen(true)}>
             Build Custom Combo
+            {comboCount > 0 && <span className="combo-cart-badge">{comboCount}</span>}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

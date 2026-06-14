@@ -87,12 +87,38 @@ body.dark {
 body.dark .product-card,
 body.dark .bundle-card,
 body.dark .testimonial-card,
-body.dark .faq-item {
+body.dark .faq-item,
+body.dark .press-card,
+body.dark .combo-tile {
   background: #222244;
 }
 
-body.dark .cart-drawer {
+body.dark .cart-drawer,
+body.dark .co-modal,
+body.dark .to-modal,
+body.dark .combo-modal {
   background: #1a1a2e;
+}
+
+body.dark input[type="text"],
+body.dark input[type="email"],
+body.dark input[type="tel"],
+body.dark input[type="search"],
+body.dark textarea {
+  background: #222244;
+  color: #e8e8e8;
+  border-color: #444;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+  color: #888;
+}
+
+body.dark input.error,
+body.dark textarea.error {
+  background: #3a1a1a;
+  border-color: var(--red);
 }
 
 body.dark nav.scrolled {

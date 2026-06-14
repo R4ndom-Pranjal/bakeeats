@@ -178,3 +178,22 @@
 .bundle-add-btn:active {
   transform: scale(0.95);
 }
+
+.bundle-add-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green);
+  color: var(--yellow);
+  border-radius: 50%;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.bundle-add-btn:hover .bundle-add-count {
+  background: var(--yellow);
+  color: var(--green);
+}

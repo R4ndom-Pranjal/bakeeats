@@ -8,7 +8,6 @@
   background: var(--green);
   color: var(--cream);
   border: 3px solid var(--green);
-  box-shadow: var(--shadow-hard);
   cursor: pointer;
   display: flex;
   align-items: center;

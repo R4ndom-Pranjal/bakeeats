@@ -25,6 +25,13 @@ export default function Checkout() {
   const [errors, setErrors] = useState({})
   const [step, setStep] = useState('form') // 'form' | 'processing' | 'success' | 'failed'
   const [confirmedOrder, setConfirmedOrder] = useState(null)
+  const [copied, setCopied] = useState(false)
+
+  const copyOrderId = () => {
+    navigator.clipboard.writeText(confirmedOrder.orderId)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   useEffect(() => {
     if (checkoutOpen) {
@@ -163,12 +170,22 @@ export default function Checkout() {
             <div className="co-order-id-card">
               <div>
                 <span className="co-order-id-label">YOUR ORDER ID</span>
-                <span className="co-order-id-value">{confirmedOrder.orderId}</span>
+                <div className="co-order-id-row">
+                  <span className="co-order-id-value">{confirmedOrder.orderId}</span>
+                  <button className="co-copy-btn" onClick={copyOrderId} aria-label="Copy order ID">
+                    {copied ? '✓ Copied' : 'Copy'}
+                  </button>
+                </div>
               </div>
               <a href="#track" className="co-track-link" onClick={() => setCheckoutOpen(false)}>
                 Track Order →
               </a>
             </div>
+
+            <p className="co-screenshot-tip">
+              <span aria-hidden="true">📸</span>
+              <span><strong>Please save a screenshot</strong> of this confirmation to avoid any issues during delivery.</span>
+            </p>
 
             <div className="co-success-grid">
               {/* Order items */}

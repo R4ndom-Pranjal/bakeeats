@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useCart } from '../context/CartContext'
 import './CustomComboPicker.css'
 
-const MIN_ITEMS = 4
+const REQUIRED_ITEMS = 4
+const COMBO_PRICE = 469
 
 export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
   const { items: cartItems, addItem, setCartOpen } = useCart()
@@ -22,7 +23,8 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
   }, [open])
 
   const totalSelected = Object.values(selections).reduce((s, q) => s + q, 0)
-  const minMet = totalSelected >= MIN_ITEMS
+  const exactMet = totalSelected === REQUIRED_ITEMS
+  const atCap = totalSelected >= REQUIRED_ITEMS
 
   const allProducts = [...cookies, ...rusks]
 
@@ -32,13 +34,13 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
       const current = next[title] || 0
       const updated = current + delta
       if (updated <= 0) delete next[title]
-      else next[title] = updated
+      else if (updated <= REQUIRED_ITEMS) next[title] = updated
       return next
     })
   }
 
   const handleAdd = () => {
-    if (!minMet) return
+    if (!exactMet) return
 
     const description = Object.entries(selections)
       .map(([title, qty]) => `${qty}x ${title}`)
@@ -54,10 +56,10 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
 
     addItem({
       title,
-      type: `Custom Combo · ${totalSelected} items`,
+      type: `Custom Combo · ${REQUIRED_ITEMS} items`,
       image: firstProduct?.image,
       description,
-      price: null,
+      price: COMBO_PRICE,
     })
 
     onClose()
@@ -73,7 +75,7 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
         <div className="combo-header">
           <div>
             <h2>BUILD YOUR COMBO</h2>
-            <p className="combo-subtitle">Pick any {MIN_ITEMS} or more — cookies, rusks, mix &amp; match.</p>
+            <p className="combo-subtitle">Pick exactly {REQUIRED_ITEMS} — cookies, rusks, mix &amp; match. ₹{COMBO_PRICE} per combo.</p>
           </div>
           <button className="combo-close" onClick={onClose} aria-label="Close">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
@@ -90,6 +92,7 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
                 key={p.title}
                 product={p}
                 qty={selections[p.title] || 0}
+                disableInc={atCap}
                 onInc={() => bump(p.title, 1)}
                 onDec={() => bump(p.title, -1)}
               />
@@ -103,6 +106,7 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
                 key={p.title}
                 product={p}
                 qty={selections[p.title] || 0}
+                disableInc={atCap}
                 onInc={() => bump(p.title, 1)}
                 onDec={() => bump(p.title, -1)}
               />
@@ -112,19 +116,19 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
 
         <div className="combo-footer">
           <div className="combo-count">
-            <span className={`combo-count-num ${minMet ? 'met' : ''}`}>
+            <span className={`combo-count-num ${exactMet ? 'met' : ''}`}>
               {totalSelected}
             </span>
             <span className="combo-count-label">
-              / {MIN_ITEMS} selected{minMet ? ' ✓' : ''}
+              / {REQUIRED_ITEMS} selected{exactMet ? ' ✓' : ''}
             </span>
           </div>
           <button
             className="btn combo-add-btn"
-            disabled={!minMet}
+            disabled={!exactMet}
             onClick={handleAdd}
           >
-            {minMet ? 'Add Combo to Cart' : `Pick ${MIN_ITEMS - totalSelected} more`}
+            {exactMet ? `Add Combo · ₹${COMBO_PRICE}` : `Pick ${REQUIRED_ITEMS - totalSelected} more`}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -135,7 +139,7 @@ export default function CustomComboPicker({ open, onClose, cookies, rusks }) {
   )
 }
 
-function ComboTile({ product, qty, onInc, onDec }) {
+function ComboTile({ product, qty, disableInc, onInc, onDec }) {
   const selected = qty > 0
   return (
     <div className={`combo-tile ${selected ? 'selected' : ''}`}>
@@ -157,6 +161,7 @@ function ComboTile({ product, qty, onInc, onDec }) {
         <button
           className="combo-qty-btn"
           onClick={onInc}
+          disabled={disableInc}
           aria-label={`Add one ${product.title}`}
         >
           +

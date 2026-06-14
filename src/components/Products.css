@@ -93,6 +93,24 @@
   border-color: var(--cream);
 }
 
+.combo-cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green);
+  color: var(--yellow);
+  border-radius: 50%;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.customize-card .btn:hover .combo-cart-badge {
+  background: var(--cream);
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

@@ -2,7 +2,8 @@ import { useCart } from '../context/CartContext'
 import './BundleCard.css'
 
 export default function BundleCard({ bundle }) {
-  const { addItem } = useCart()
+  const { addItem, items: cartItems } = useCart()
+  const cartCount = cartItems.find((i) => i.title === bundle.name)?.qty || 0
 
   const handleAdd = () => {
     addItem({
@@ -48,7 +49,7 @@ export default function BundleCard({ bundle }) {
         )}
         <button className="bundle-add-btn" onClick={handleAdd}>
           Add to Cart
-          <span>+</span>
+          <span className={cartCount > 0 ? 'bundle-add-count' : ''}>{cartCount > 0 ? cartCount : '+'}</span>
         </button>
       </div>
     </div>

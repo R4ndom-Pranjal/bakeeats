@@ -35,7 +35,7 @@ export default function Navbar() {
           <a href="#products">Our Babies</a>
           <a href="#story">Kahani</a>
           <a href="https://blinkit.com/prn/x/prid/735252" target="_blank" rel="noreferrer">Blinkit</a>
-          <a href="#footer">Find Us</a>
+          <a href="#footer">Contact Us</a>
           <a href="#track">Track Order</a>
         </div>
         <div className="nav-right">
@@ -47,12 +47,6 @@ export default function Navbar() {
             </svg>
             {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </button>
-          <a href="https://wa.me/919266565336" className="btn nav-cta" target="_blank" rel="noreferrer">
-            Order on WhatsApp
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
           <button
             className={`hamburger ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -70,7 +64,7 @@ export default function Navbar() {
           <a href="#products" onClick={closeMenu}>Our Babies</a>
           <a href="#story" onClick={closeMenu}>Kahani</a>
           <a href="https://blinkit.com/prn/x/prid/735252" target="_blank" rel="noreferrer" onClick={closeMenu}>Blinkit</a>
-          <a href="#footer" onClick={closeMenu}>Find Us</a>
+          <a href="#footer" onClick={closeMenu}>Contact Us</a>
           <a href="#track" onClick={closeMenu}>Track Order</a>
           <button className="cart-btn mobile-cart-btn" onClick={() => { setCartOpen(true); closeMenu() }} aria-label="Open cart">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -80,12 +74,6 @@ export default function Navbar() {
             <span className="mobile-cart-label">Cart</span>
             {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </button>
-          <a href="https://wa.me/919266565336" className="btn mobile-cta" target="_blank" rel="noreferrer" onClick={closeMenu}>
-            Order on WhatsApp
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
         </div>
       </div>
     </>
