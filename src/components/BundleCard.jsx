@@ -2,7 +2,7 @@ import { useCart } from '../context/CartContext'
 import './BundleCard.css'
 
 export default function BundleCard({ bundle }) {
-  const { addItem, items: cartItems } = useCart()
+  const { addItem, updateQty, items: cartItems } = useCart()
   const cartCount = cartItems.find((i) => i.title === bundle.name)?.qty || 0
 
   const handleAdd = () => {
@@ -14,6 +14,8 @@ export default function BundleCard({ bundle }) {
       price: bundle.price,
     })
   }
+
+  const handleDec = () => updateQty(bundle.name, cartCount - 1)
 
   return (
     <div className="bundle-card">
@@ -47,10 +49,18 @@ export default function BundleCard({ bundle }) {
             <span className="bundle-mrp-label">Enquire</span>
           </div>
         )}
-        <button className="bundle-add-btn" onClick={handleAdd}>
-          Add to Cart
-          <span className={cartCount > 0 ? 'bundle-add-count' : ''}>{cartCount > 0 ? cartCount : '+'}</span>
-        </button>
+        {cartCount > 0 ? (
+          <div className="bundle-stepper">
+            <button className="bundle-stepper-btn" onClick={handleDec} aria-label="Remove one">−</button>
+            <span className="bundle-stepper-count">{cartCount}</span>
+            <button className="bundle-stepper-btn" onClick={handleAdd} aria-label="Add one">+</button>
+          </div>
+        ) : (
+          <button className="bundle-add-btn" onClick={handleAdd}>
+            Add to Cart
+            <span>+</span>
+          </button>
+        )}
       </div>
     </div>
   )

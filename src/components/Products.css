@@ -93,22 +93,46 @@
   border-color: var(--cream);
 }
 
-.combo-cart-badge {
-  display: inline-flex;
+.combo-actions {
+  display: flex;
   align-items: center;
+  gap: 1rem;
   justify-content: center;
-  background: var(--green);
-  color: var(--yellow);
-  border-radius: 50%;
-  width: 1.4rem;
-  height: 1.4rem;
-  font-size: 0.8rem;
-  font-weight: 900;
-  line-height: 1;
+  flex-wrap: wrap;
 }
 
-.customize-card .btn:hover .combo-cart-badge {
-  background: var(--cream);
+.combo-qty-control {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  padding: 0.4rem 0.8rem;
+}
+
+.combo-qty-dec {
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.2rem;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.combo-qty-dec:hover {
+  opacity: 1;
+}
+
+.combo-qty-val {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--yellow);
+  letter-spacing: 0.03em;
 }
 
 .product-grid {

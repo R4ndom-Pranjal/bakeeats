@@ -196,10 +196,14 @@ const rusks = [
 export default function Products() {
   const sectionRef = useRef(null)
   const [comboOpen, setComboOpen] = useState(false)
-  const { items: cartItems } = useCart()
-  const comboCount = cartItems
-    .filter((i) => i.title.startsWith('CUSTOM COMBO'))
-    .reduce((sum, i) => sum + i.qty, 0)
+  const { items: cartItems, removeItem } = useCart()
+  const comboItems = cartItems.filter((i) => i.title.startsWith('CUSTOM COMBO'))
+  const comboCount = comboItems.reduce((sum, i) => sum + i.qty, 0)
+
+  const removeLastCombo = () => {
+    if (comboItems.length === 0) return
+    removeItem(comboItems[comboItems.length - 1].title)
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -249,13 +253,20 @@ export default function Products() {
           <span className="customize-icon">🍪</span>
           <h3>CUSTOMIZE YOUR COMBO</h3>
           <p>Pick any 4 flavors — cookies, rusks, mix &amp; match. ₹469 per combo.</p>
-          <button className="btn" onClick={() => setComboOpen(true)}>
-            Build Custom Combo
-            {comboCount > 0 && <span className="combo-cart-badge">{comboCount}</span>}
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
+          <div className="combo-actions">
+            {comboCount > 0 && (
+              <div className="combo-qty-control">
+                <button className="combo-qty-dec" onClick={removeLastCombo} aria-label="Remove one combo">−</button>
+                <span className="combo-qty-val">{comboCount} in cart</span>
+              </div>
+            )}
+            <button className="btn" onClick={() => setComboOpen(true)}>
+              {comboCount > 0 ? 'Add Another' : 'Build Custom Combo'}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
